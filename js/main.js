@@ -4,6 +4,7 @@ $(document).ready(function(){
   $('#easy-game').hide();
   $('#int-game').hide();
   $('#hard-game').hide();
+
   $('#submit').on('click', startGame);
 
   var choice1 = '';
@@ -11,12 +12,29 @@ $(document).ready(function(){
   var tag1;
   var tag2;
 
+  var game;
+
   function checkWin(){
-    if ( $('.cardback').length <= $('.winners').length + 2) {
+     
+    if ( game == 'easy' && $('.winners').length >= 7) {
       alert('YOU WIN');
+      $(".timer").addClass('freeze');
+      $('.freeze').removeClass('timer');
+      $(".card").addClass('winners');
+      $('.winners').removeClass('clicked');
+    } else if ( game == 'int' && $('.winners').length >= 15) {
+      alert('YOU WIN');
+      $(".timer").addClass('freeze');
+      $('.freeze').removeClass('timer');
+      $(".card").addClass('winners');
+      $('.winners').removeClass('clicked');
+    } else if ( game == 'int' && $('.winners').length >= 33) {
+      $(".timer").addClass('freeze');
+      $('.freeze').removeClass('timer');
       $(".card").addClass('winners');
       $('.winners').removeClass('clicked');
     }
+  
   };
 
   function checkCard(){
@@ -41,6 +59,7 @@ $(document).ready(function(){
         $('#points').text(points);
       }
     }, 500);
+     
     checkWin();
   };
 
@@ -60,7 +79,7 @@ $(document).ready(function(){
 $('.card').on('click', showCard);
 
 
-});
+
 
 
 
@@ -82,6 +101,8 @@ function startGame(){
 
 
 function startEasy(){
+
+ game = 'easy';
 
   var easyGame = [
   'images/hj.png',
@@ -112,6 +133,8 @@ function startEasy(){
 function startInt(){
   $('#selector').hide();
   
+  game = 'int';
+
   var intGame = [
     'images/hj.png',
     'images/hq.png',
@@ -149,6 +172,8 @@ function startInt(){
 
 function startHard(){
   $('#selector').hide();
+
+  game ='hard';
   
   var hardGame = [
     'images/hj.png',
@@ -204,7 +229,31 @@ function startIns(){
   // console.log('insane');
 }
 
-function showScore(){
-  $('#scoreboard').show();
+
+
+
+
+  function showScore(){
+    $('#scoreboard').show();
+
+
+
+    function startClock(){
+      //use the jquery setInterval method to update the time every 1sec
+      setInterval(function(){ 
+          time = parseInt($('.timer').text());
+          time += 1;
+          $('.timer').text(time);
+
+      }, 1000);
+      
+  }
+
+
+
+
+  $('.timer').text(startClock());
 };
 
+
+});
