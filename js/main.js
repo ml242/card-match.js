@@ -1,7 +1,10 @@
 $(document).ready(function(){
   console.log('ready to kick ass');
+  $('#scoreboard').hide();
   $('#easy-game').hide();
-  $('#submit').on('click', startGame)
+  $('#int-game').hide();
+  $('#hard-game').hide();
+  $('#submit').on('click', startGame);
 
   var choice1 = '';
   var choice2 = '';
@@ -9,7 +12,6 @@ $(document).ready(function(){
   var tag2;
 
   function checkWin(){
-    debugger;
     if ( $('.cardback').length <= $('.winners').length + 2) {
       alert('YOU WIN');
       $(".card").addClass('winners');
@@ -26,13 +28,19 @@ $(document).ready(function(){
         $('.winners').removeClass('clicked');
         choice1 = '';
         choice2 = '';
+        points = parseInt($('#points').text());
+        points += 10;
+        $('#points').text(points);
       } else {
         $('.clicked').closest('.card').css('opacity', 0);
         $('clicked').removeClass();
         choice1 = '';
         choice2 = '';
+        points = parseInt($('#points').text());
+        points -= 5;
+        $('#points').text(points);
       }
-    }, 1000);
+    }, 500);
     checkWin();
   };
 
@@ -68,97 +76,135 @@ function startGame(){
       } else {
         startIns();
       }
-      
+      showScore();
 
     };
 
 
-    function startEasy(){
+function startEasy(){
 
-      var easyGame = [
-      'images/hj.png',
-      'images/hq.png',
-      'images/hk.png',
-      'images/hj.png',
-      'images/hq.png',
-      'images/hk.png',
-      'images/h1.png',
-      'images/h1.png'
-      ];
+  var easyGame = [
+  'images/hj.png',
+  'images/hq.png',
+  'images/hk.png',
+  'images/hj.png',
+  'images/hq.png',
+  'images/hk.png',
+  'images/h1.png',
+  'images/h1.png'
+  ];
 
-      easyGame = _.shuffle(easyGame) 
+  easyGame = _.shuffle(easyGame) 
 
   // console.log('easy');
   $('#selector').hide();
   $('#easy-game').show();
   var eGame = $('.card');
   for(i=0; i < eGame.length; i++){
-    // $(eGame[i]).css('background-image', 'url(' + easyGame[i] + ')');
     eGame[i].src = easyGame[i];
+  }
+    setTimeout(function() {
+    eGame.css('opacity', 0.0)
+  }, 2500);
+
+}
+
+function startInt(){
+  $('#selector').hide();
+  
+  var intGame = [
+    'images/hj.png',
+    'images/hq.png',
+    'images/hk.png',
+    'images/hj.png',
+    'images/hq.png',
+    'images/hk.png',
+    'images/h1.png',
+    'images/h1.png',
+    'images/sj.png',
+    'images/sq.png',
+    'images/sk.png',
+    'images/sj.png',
+    'images/sq.png',
+    'images/sk.png',
+    'images/s1.png',
+    'images/s1.png'
+  ];
+
+  intGame = _.shuffle(intGame) 
+
+  $('#int-game').show();
+
+  var eGame = $('.intcard');
+  for(i=0; i < eGame.length; i++){
+    // $(eGame[i]).css('background-image', 'url(' + easyGame[i] + ')');
+    eGame[i].src = intGame[i];
   }
   setTimeout(function() 
   {
     eGame.css('opacity', 0.0)
     //do something special
   }, 2500);
-
-}
-
-function startInt(){
-  // console.log('int');
 }
 
 function startHard(){
-  // console.log('hard');
-}
+  $('#selector').hide();
+  
+  var hardGame = [
+    'images/hj.png',
+    'images/hq.png',
+    'images/hk.png',
+    'images/hj.png',
+    'images/hq.png',
+    'images/hk.png',
+    'images/h1.png',
+    'images/h1.png',
+    'images/sj.png',
+    'images/sq.png',
+    'images/sk.png',
+    'images/sj.png',
+    'images/sq.png',
+    'images/sk.png',
+    'images/s1.png',
+    'images/s1.png',
+    'images/dj.png',
+    'images/dq.png',
+    'images/dk.png',
+    'images/dj.png',
+    'images/dq.png',
+    'images/dk.png',
+    'images/d1.png',
+    'images/d1.png',
+    'images/cj.png',
+    'images/cq.png',
+    'images/ck.png',
+    'images/cj.png',
+    'images/cq.png',
+    'images/ck.png',
+    'images/c1.png',
+    'images/c1.png'  
+  ];
+
+  hardGame = _.shuffle(hardGame) 
+
+  $('#hard-game').show();
+
+  var eGame = $('.hardcard');
+  for(i=0; i < eGame.length; i++){
+    // $(eGame[i]).css('background-image', 'url(' + easyGame[i] + ')');
+    eGame[i].src = hardGame[i];
+  }
+  setTimeout(function() 
+  {
+    eGame.css('opacity', 0.0)
+    //do something special
+  }, 2500);}
 
 function startIns(){
   // console.log('insane');
 }
 
-
-var intGame = [
-'images1.png',
-'images2.png',
-'images3.png',
-'images4.png',
-'images5.png',
-'images6.png'
-];
-
-var hardGame = [
-'images1.png',
-'images2.png',
-'images3.png',
-'images4.png',
-'images5.png',
-'images6.png',
-'images7.png',
-'images8.png',
-'images9.png',
-'images10.png',
-'images11.png',
-'images12.png'
-];
-
-// function shuffle(array) {
-//   var currentIndex = array.length, 
-//   temporaryValue, 
-//   randomIndex;
-
-//   // While there remain elements to shuffle...
-//   while (0 !== currentIndex) {
-
-//     // Pick a remaining element...
-//     randomIndex = Math.floor(Math.random() * currentIndex);
-//     currentIndex -= 1;
-
-//     // And swap it with the current element.
-//     temporaryValue = array[currentIndex];
-//     array[currentIndex] = array[randomIndex];
-//     array[randomIndex] = temporaryValue;
-//   }
-
-//   return array;
-// }
+function showScore(){
+  $('#scoreboard').show();
+};
 
