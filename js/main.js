@@ -10,8 +10,10 @@ $(document).ready(function(){
 
   function checkWin(){
     debugger;
-    if ($('.card').length == $('.winners').length){
+    if ( $('.cardback').length <= $('.winners').length + 2) {
       alert('YOU WIN');
+      $(".card").addClass('winners');
+      $('.winners').removeClass('clicked');
     }
   };
 
@@ -31,7 +33,7 @@ $(document).ready(function(){
         choice2 = '';
       }
     }, 1000);
-  
+    checkWin();
   };
 
   function showCard(){
@@ -48,7 +50,7 @@ $(document).ready(function(){
   };
 
 $('.card').on('click', showCard);
-$('.card').on('click', checkWin);
+
 
 });
 
