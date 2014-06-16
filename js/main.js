@@ -22,17 +22,20 @@ $(document).ready(function(){
       $('.freeze').removeClass('timer');
       $(".card").addClass('winners');
       $('.winners').removeClass('clicked');
+      location.reload();
     } else if ( game == 'int' && $('.winners').length >= 15) {
       alert('YOU WIN');
       $(".timer").addClass('freeze');
       $('.freeze').removeClass('timer');
       $(".card").addClass('winners');
       $('.winners').removeClass('clicked');
+      location.reload();
     } else if ( game == 'int' && $('.winners').length >= 33) {
       $(".timer").addClass('freeze');
       $('.freeze').removeClass('timer');
       $(".card").addClass('winners');
       $('.winners').removeClass('clicked');
+      location.reload();
     }
   
   };
