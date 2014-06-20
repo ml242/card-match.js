@@ -11,15 +11,23 @@ $(document).ready(function(){
   $('#difficult').click(startHard);
   // $('#submit').on('click', startGame);
 
+  $('#reset').click(location.reload)
+
   var choice1 = '';
   var choice2 = '';
 
   var game;
 
+  function playAgain(){
+    // $("#points").text('0');
+    // $(".freeze").text('-2').addClass('timer').removeClass('freeze');
+    // $(".winners").addClass('.card').removeClass('.winners');
+    // $('#choice').fadeIn(" slow" );
+  }
+
   function win(){
       // console.log('winner');
       $('#winner').fadeIn( "slow" );
-      $('#choice').fadeIn(" slow" );
   };
 
   function checkWin(){
@@ -30,11 +38,11 @@ $(document).ready(function(){
       $('.freeze').removeClass('timer');
       $(".card").addClass('winners');
       $('.winners').removeClass('clicked');
-      debugger;      
+             
       win()
       // location.reload();
     } else if ( game == 'int' && $('.winners').length >= 15) {
-      alert('YOU WIN');
+
       $(".timer").addClass('freeze');
       $('.freeze').removeClass('timer');
       $(".card").addClass('winners');
@@ -44,6 +52,7 @@ $(document).ready(function(){
 
       location.reload();
     } else if ( game == 'int' && $('.winners').length >= 33) {
+      
       $(".timer").addClass('freeze');
       $('.freeze').removeClass('timer');
       $(".card").addClass('winners');
