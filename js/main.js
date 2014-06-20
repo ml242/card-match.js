@@ -11,7 +11,7 @@ $(document).ready(function(){
   $('#difficult').click(startHard);
   // $('#submit').on('click', startGame);
 
-  $('#reset').click(location.reload)
+  $('#reset').click(playAgain)
 
   var choice1 = '';
   var choice2 = '';
@@ -19,10 +19,13 @@ $(document).ready(function(){
   var game;
 
   function playAgain(){
-    // $("#points").text('0');
-    // $(".freeze").text('-2').addClass('timer').removeClass('freeze');
-    // $(".winners").addClass('.card').removeClass('.winners');
-    // $('#choice').fadeIn(" slow" );
+    $('#easy-game').fadeOut( 'slow' );
+    $('#int-game').fadeOut( 'slow' );
+    $('#hard-game').fadeOut( 'slow' );
+    $('#winner').fadeOut( 'slow');
+    $('#scoreboard').fadeOut( 'slow');
+    $('#selector').fadeIn('slow');
+    $('#choice').fadeIn(" slow" );
   }
 
   function win(){
@@ -50,7 +53,6 @@ $(document).ready(function(){
 
       win()
 
-      location.reload();
     } else if ( game == 'int' && $('.winners').length >= 33) {
       
       $(".timer").addClass('freeze');
@@ -60,7 +62,6 @@ $(document).ready(function(){
 
       win()
 
-      location.reload();
     }
   
   };
@@ -153,7 +154,15 @@ $('#easy-game').css('width', '960px');
   // console.log('easy');
   $('#selector').hide();
   $('#choice').hide();
+
+  $("#points").text('0');
+  $(".freeze").text('-2').addClass('timer').removeClass('freeze');
+  $(".winners").addClass('card').removeClass('winners');
+
   showScore();
+
+
+
 
   $('#easy-game').show();
   
@@ -170,6 +179,11 @@ $('#easy-game').css('width', '960px');
 function startInt(){
   $('#selector').hide();
   $('#choice').hide();
+
+  $("#points").text('0');
+  $(".freeze").text('-2').addClass('timer').removeClass('freeze');
+  $(".winners").addClass('card').removeClass('winners');
+
   showScore();
 
   
@@ -217,6 +231,11 @@ function startInt(){
 function startHard(){
   $('#selector').hide();
   $('#choice').hide();
+
+  $("#points").text('0');
+  $(".freeze").text('-2').addClass('timer').removeClass('freeze');
+  $(".winners").addClass('card').removeClass('winners');
+
   showScore();
 
 
