@@ -1,3 +1,6 @@
+// make the cards show for a longer amount of time for each level 3,5,10
+// fix the set interval
+
 $(document).ready(function(){
   console.log('ready to kick ass');
   $('#scoreboard').hide();
@@ -309,6 +312,7 @@ function startIns(){
     function startClock(){
       //use the jquery setInterval method to update the time every 1sec
       setInterval(function(){ 
+          // time = parseInt($('.timer').text('-2'));
           time = parseInt($('.timer').text());
           time += 1;
           $('.timer').text(time);
