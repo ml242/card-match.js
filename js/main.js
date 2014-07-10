@@ -56,7 +56,7 @@ $(document).ready(function(){
 
       win()
 
-    } else if ( game == 'int' && $('.winners').length >= 33) {
+    } else if ( game == 'hard' && $('.winners').length >= 33) {
       
       $(".timer").addClass('freeze');
       $('.freeze').removeClass('timer');
